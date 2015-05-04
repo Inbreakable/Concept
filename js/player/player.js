@@ -32,6 +32,7 @@ var player = function(sprite,ele){ //Passing in a tilemap object? -> what would 
         keyOperation[68] = _moveRight;
         keyOperation[83] = _moveDown;
         keyOperation[87] = _moveUp;
+        keyOperation[32] = _jump;
     /*End keyOperation*/
 
     //This would be the object that is passed in
@@ -102,6 +103,15 @@ var player = function(sprite,ele){ //Passing in a tilemap object? -> what would 
             _player.current.position[0] += 32;
         }
         _player.current.direction = 3;
+    }
+    function _jump(e){
+        var i = 0;
+        _player.current.position[1] -= 32;
+        setTimeout(function(){
+            _clearPlayer();
+            _player.current.position[1] += 32;
+            _drawPlayer();
+        },100);
     }
 
 }
