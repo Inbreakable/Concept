@@ -16,6 +16,7 @@ $(function() {
 		,[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 		,[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 	];
-	var c = document.getElementById("background");
-	var bg = new canvas(map,'background')
+	var bg = new canvas(map,'background');
+	var player = new window.player('sprite','sprite');
+
 });
