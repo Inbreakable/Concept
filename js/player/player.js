@@ -10,7 +10,6 @@ var player = function(sprite,ele){ //Passing in a tilemap object? -> what would 
         var action = _player.actions[_player.current.direction];
         var position = _player.current.position;
         content.drawImage(img,action.x*_player.width,action.y*_player.height,_player.width,_player.height,position[0],position[1],_player.width/_player.scale,_player.height/_player.scale);
-        content.drawImage(img,50,50);
     }; //This needed to be wrapped in a function in order to not premature execute the function
 
     var requestAnimationFrame =
@@ -25,8 +24,14 @@ var player = function(sprite,ele){ //Passing in a tilemap object? -> what would 
 
     /*List of function to execute based on keypress*/
         var keyOperation = [];
+        keyOperation[37] = _moveLeft;
         keyOperation[38] = _moveUp;
+        keyOperation[39] = _moveRight;
         keyOperation[40] = _moveDown;
+        keyOperation[65] = _moveLeft;
+        keyOperation[68] = _moveRight;
+        keyOperation[83] = _moveDown;
+        keyOperation[87] = _moveUp;
     /*End keyOperation*/
 
     //This would be the object that is passed in
@@ -49,7 +54,7 @@ var player = function(sprite,ele){ //Passing in a tilemap object? -> what would 
     }
 
     img.src = _player.img;
-    $(document).on('keydown' _move);
+    $(document).on('keydown', _move);
 
     //Private Functions
     function _drawPlayer (action,x,y){
@@ -75,12 +80,28 @@ var player = function(sprite,ele){ //Passing in a tilemap object? -> what would 
         return false;
     }
     function _moveUp(e){
-        _player.current.position[1] -= 32;
+        if(_player.current.direction === 1){
+            _player.current.position[1] -= 32;
+        }
         _player.current.direction = 1;
     }
     function _moveDown(e){
-        _player.current.position[1] += 32;
+        if(_player.current.direction === 0){
+            _player.current.position[1] += 32;
+        }
         _player.current.direction = 0;
+    }
+    function _moveLeft(e){
+        if(_player.current.direction === 2){
+            _player.current.position[0] -= 32;
+        }
+        _player.current.direction = 2;
+    }
+    function _moveRight(e){
+        if(_player.current.direction === 3){
+            _player.current.position[0] += 32;
+        }
+        _player.current.direction = 3;
     }
 
 }
