@@ -1,0 +1,35 @@
+{
+    // Required
+    "manifest_version": 2,
+    "name": "My Extension",
+    "version": "1",
+
+    // Recommended
+    "description": "A plain text description",
+
+    // Pick one (or none)
+    "browser_action": {
+        "default_icon": "images/steam_icon_dark_48px.png"
+    }
+    , "permissions": [
+        "tabs"
+    ]
+    , "background": {
+        "scripts": ["js/openWebsite.js","js/settings.js"],
+        "persistent": false
+    }
+    , "content_scripts": [
+        {
+            "all_frames": false,
+            "matches": ["<all_urls>"],
+            "exclude_matches": [],
+            "js": [
+                "lib/jquery-2.1.3.js"
+            ]
+            // ,
+            // "css": [
+            //     "css/style.css"
+            // ]
+        }
+    ]
+}
